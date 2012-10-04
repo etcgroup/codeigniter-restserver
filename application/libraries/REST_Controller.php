@@ -44,8 +44,9 @@ class REST_Controller extends CI_Controller {
 		// How is this request being made? POST, DELETE, GET, PUT?
 		$this->request->method = $this->_detect_method();
 
-		// Set up our GET variables
-		$this->_get_args = array_merge($this->_get_args, $this->uri->ruri_to_assoc());
+		// Set up our GET variables		
+		$uri_get_args = array_map('urldecode', $this->uri->ruri_to_assoc());
+		$this->_get_args = array_merge($this->_get_args, $uri_get_args);
 
 		//$this->load->library('security');
 
